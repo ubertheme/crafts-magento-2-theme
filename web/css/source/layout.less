@@ -1,0 +1,165 @@
+// /**
+// //  * Magento
+//  *
+//  * NOTICE OF LICENSE
+//  *
+//  * This source file is subject to the Academic Free License (AFL 3.0)
+//  * that is bundled with this package in the file LICENSE_AFL.txt.
+//  * It is also available through the world-wide-web at this URL:
+//  * http://opensource.org/licenses/afl-3.0.php
+//  * If you did not receive a copy of the license and are unable to
+//  * obtain it through the world-wide-web, please send an email
+//  * to license@magentocommerce.com so we can send you a copy immediately.
+//  *
+//  * DISCLAIMER
+//  *
+//  * Do not edit or add to this file if you wish to upgrade Magento to newer
+//  * versions in the future. If you wish to customize Magento for your
+//  * needs please refer to http://www.magentocommerce.com for more information.
+//  *
+//  * @category    design
+//  * @copyright   Copyright (c) 2014 X.commerce, Inc. (http://www.magentocommerce.com)
+//  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+//  */
+
+@layout-column-main-sidebar-offset: 2%;
+@layout-column-additional-sidebar-offset: @layout-column-main-sidebar-offset;
+
+//
+//    Common
+//--------------------------------------
+
+.responsive-common() {
+
+.columns {
+    #layout-columns();
+    .column.main {
+        &:extend(.abs-add-box-sizing all);
+        .vendor-prefix-flex-grow(1);
+        .vendor-prefix-flex-basis(100%);
+        .css(padding-bottom, @indent-xl-base);
+        .vendor-prefix-order(1);
+    }
+    .sidebar-main {
+        &:extend(.abs-add-box-sizing all);
+        .vendor-prefix-flex-grow(1);
+        .vendor-prefix-flex-basis(100%);
+        .vendor-prefix-order(1);
+    }
+    .sidebar-additional {
+        &:extend(.abs-add-box-sizing all);
+        .vendor-prefix-flex-grow(1);
+        .vendor-prefix-flex-basis(100%);
+        .vendor-prefix-order(2);
+    }
+}
+
+}
+
+//
+//    Mobile
+//--------------------------------------
+.responsive-max-m(@break) when (@break = @screen-m) {
+    .navigation,
+    .breadcrumbs,
+    .page-header .header.panel,
+    .header.content,
+    .footer.content,
+    .page-main,
+    .page-wrapper > .widget,
+    .page-wrapper > .page-bottom,
+    .block.category.event,
+    .top-container {
+        padding-left: @layout-width-xs-indent;
+        padding-right: @layout-width-xs-indent;
+    }
+    .page-main {
+        .account &,
+        .cms-privacy-policy & {
+            position: relative;
+            padding-top: 41px;
+        }
+    }
+}
+
+//
+//    Desktop
+//--------------------------------------
+.responsive-min-l(@break) when (@break = @screen-m) {
+    .navigation,
+    .breadcrumbs,
+    .page-header .header.panel,
+    .header.content,
+    .footer.content,
+    .page-wrapper > .widget,
+    .page-wrapper > .page-bottom,
+    .block.category.event,
+    .container,
+    .top-container {
+        padding-left: @layout-indent;
+        padding-right: @layout-indent;
+        margin-left: auto;
+        margin-right: auto;
+        width: auto;
+        max-width: @layout-max-width;
+    }
+
+    .page-main {
+        box-sizing: border-box;
+        margin-right: auto;
+        margin-left: auto;
+        padding-right: @layout-indent;
+        padding-left: @layout-indent;
+        max-width: @layout-max-width + @layout-indent * 2;
+        width: 100%;
+        .ie9 & {
+            width: auto;
+        }
+    }
+
+    .columns {
+        display: block;
+    }
+
+    .column.main {
+        #layout-columns > .main();
+        &:extend(.abs-add-box-sizing-desktop all);
+        min-height: 300px;
+    }
+
+    .sidebar-main {
+        #layout-columns > .left();
+        padding-right: @layout-column-main-sidebar-offset;
+        &:extend(.abs-add-box-sizing-desktop all);
+    }
+
+    .page-layout-2columns-right .sidebar-main {
+        padding-right: 0;
+        padding-left: @layout-column-main-sidebar-offset;
+    }
+
+    .sidebar-additional {
+        #layout-columns > .right();
+        padding-left: @layout-column-additional-sidebar-offset;
+        clear: right;
+        &:extend(.abs-add-box-sizing-desktop all);
+    }
+
+    .page-layout-2columns-left {
+        .sidebar-main,
+        .sidebar-additional {
+            padding-right: @layout-column-additional-sidebar-offset;
+            padding-left: 0;
+            clear: left;
+            float: left;
+            width: 25%;
+        }
+         .column.main {
+            width: 75%;
+        }
+    }
+
+    .panel.header {
+        padding: 10px 20px;
+    }
+}
