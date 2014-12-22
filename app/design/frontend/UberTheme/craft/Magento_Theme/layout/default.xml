@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @copyright   Copyright (c) 2014 X.commerce, Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="header.container">
+            <container name="header.panel" label="Page Header Panel" htmlTag="div" htmlClass="panel header">
+            </container>
+            <container name="header-wrapper" label="Page Header" as="header-wrapper" htmlTag="div" htmlClass="header content">
+            </container>
+        </referenceContainer>
+        <referenceContainer name="header.top">
+            <container name="header.inner" label="Header sections" htmlTag="div" htmlClass="container">
+                <block class="Magento\Theme\Block\Html\Header\Logo" name="logo" before="-" />
+                <block class="Magento\Theme\Block\Html\Topmenu" name="header.topnav" template="html/topmenu.phtml" />
+                <block class="Magento\Framework\View\Element\Template" name="search.sections" after="settings.sections" template="Magento_Search::form.mini.top.phtml">
+                     <arguments>
+                        <argument name="group_name" xsi:type="string">search-sections</argument>
+                        <argument name="group_css" xsi:type="string">search-sections</argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Framework\View\Element\Template" name="settings.sections" after="header_links" template="Magento_Theme::html/sections-settings.phtml">
+                     <arguments>
+                        <argument name="group_name" xsi:type="string">settings-sections</argument>
+                        <argument name="group_css" xsi:type="string">settings-sections</argument>
+                    </arguments>
+                    <block class="Magento\Store\Block\Switcher" name="store_language" as="store_language" group="settings-sections" template="switch/flags.phtml"/>
+                </block>
+                <block class="Magento\Framework\View\Element\Template" name="access.sections" after="minicart.sections" template="Magento_Theme::html/sections-access.phtml">
+                    <arguments>
+                        <argument name="group_name" xsi:type="string">access-sections</argument>
+                        <argument name="group_css" xsi:type="string">access-sections</argument>
+                    </arguments>
+                    <block class="Magento\Framework\View\Element\Html\Links" name="header_links" as="header_links" group="access-sections" template="Magento_Theme::html/account.phtml" />
+                </block>
+                <block class="Magento\Framework\View\Element\Template" name="minicart.sections" before="-" template="Magento_Theme::html/sections-minicart.phtml">
+                    <arguments>
+                        <argument name="group_name" xsi:type="string">minicart-sections</argument>
+                        <argument name="group_css" xsi:type="string">minicart-sections</argument>
+                    </arguments>
+                    <block class="Magento\Checkout\Block\Cart\Sidebar" name="minicartheader" as="minicartheader" group="minicart-sections" template="cart/minicart.phtml">
+                        <block class="Magento\Framework\View\Element\RendererList" name="checkout.cart.sidebar.item.renderers" as="renderer.list"/>
+                        <container name="minicart.subtotal.container" as="subtotal" label="My Cart Subtotal">
+                            <block name="minicart.subtotal" class="Magento\Checkout\Block\Cart\Sidebar" template="cart/subtotal.phtml"/>
+                        </container>
+                        <container name="minicart.extra.info" as="minicart_info" label="My Cart Extra info"/>
+                        <container name="topCart.extra_actions" as="extra_actions" label="My Cart Extra Actions">
+                            <block class="Magento\Catalog\Block\ShortcutButtons" name="topCart.shortcut.buttons"/>
+                        </container>
+                    </block>
+                </block>
+                
+            </container>
+        </referenceContainer>
+        <referenceContainer name="page.top">
+            <!-- <container name="top.container" as="topContainer" label="After Page Header Top" htmlTag="div" htmlClass="top-container">
+            <block class="Magento\Theme\Block\Html\Topmenu" name="catalog.topnav" template="html/topmenu.phtml" ttl="3600"/>            
+           </container> -->
+               <block class="Magento\Theme\Block\Html\Breadcrumbs" name="breadcrumbs" as="breadcrumbs"/>
+        </referenceContainer>
+        <referenceContainer name="sections.bot1">
+            <container name="sections.panel3" label="Sections Panel 3" htmlTag="div" htmlClass="container sections">
+                <block class="Magento\Cms\Block\Block" name="position-7">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">position-7</argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Cms\Block\Block" name="position-8">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">position-8</argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Cms\Block\Block" name="position-9">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">position-9</argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Cms\Block\Block" name="position-10">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">position-10</argument>
+                    </arguments>
+                </block>
+            </container>
+        </referenceContainer>
+        <referenceContainer name="sections.bot2">
+            <container name="sections.panel4" label="Sections Panel 4" htmlTag="div" htmlClass="container sections">
+                <block class="Magento\Cms\Block\Block" name="position-11">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">position-11</argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Cms\Block\Block" name="position-12">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">position-12</argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Cms\Block\Block" name="position-13">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">position-13</argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Cms\Block\Block" name="position-14">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">position-14</argument>
+                    </arguments>
+                </block>
+            </container>
+        </referenceContainer>
+        <referenceContainer name="footer-container">
+            <container name="footer" as="footer" label="Page Footer" htmlTag="div" htmlClass="footer container">
+                <remove name="form.subscribe"/>
+                <block class="Magento\Theme\Block\Html\Footer" name="copyright" template="html/copyright.phtml"/>
+                <block class="Magento\Framework\View\Element\Template" name="report.bugs" template="Magento_Theme::html/bugreport.phtml" />
+            </container>
+        </referenceContainer>
+    </body>
+</page>

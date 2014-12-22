@@ -1,0 +1,124 @@
+// /**
+// //  * Magento
+//  *
+//  * NOTICE OF LICENSE
+//  *
+//  * This source file is subject to the Academic Free License (AFL 3.0)
+//  * that is bundled with this package in the file LICENSE_AFL.txt.
+//  * It is also available through the world-wide-web at this URL:
+//  * http://opensource.org/licenses/afl-3.0.php
+//  * If you did not receive a copy of the license and are unable to
+//  * obtain it through the world-wide-web, please send an email
+//  * to license@magentocommerce.com so we can send you a copy immediately.
+//  *
+//  * DISCLAIMER
+//  *
+//  * Do not edit or add to this file if you wish to upgrade Magento to newer
+//  * versions in the future. If you wish to customize Magento for your
+//  * needs please refer to http://www.magentocommerce.com for more information.
+//  *
+//  * @category    design
+//  * @copyright   Copyright (c) 2014 X.commerce, Inc. (http://www.magentocommerce.com)
+//  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+//  */
+
+@collapsible-nav-background: @sidebar-background;
+@collapsible-nav-item-hover: #e8e8e8;
+@collapsible-nav-color: false;
+@collapsible-nav-current-color: false;
+@collapsible-nav-current-font-weight: @font-weight-semibold;
+@collapsible-nav-current-border: 3px solid transparent;
+@collapsible-nav-current-border-color: #ff5501;
+
+
+//
+//    Common
+//--------------------------------------
+
+.responsive-common() {
+
+//
+//    Collapsible navigation
+//--------------------------------------
+.block-collapsible-nav {
+    .content {
+        padding: 15px 0;
+        //.css(background, @collapsible-nav-background);
+    }
+    .item {
+        margin: 3px 0 0;
+        &:first-child {
+            margin-top: 0;
+        }
+        a,
+        strong {
+            display: block;
+            padding: 10px 0 10px 0;
+            border: 0;
+            color: #333;
+						&:active,
+						&:focus,
+						&:hover {
+						background: none;
+							color: #e66c69;
+							text-decoration: none;
+						}
+        }
+        a {
+            text-decoration: none;
+            &:hover {
+                background: none;
+            } 
+        }
+        &.current {
+            a,
+            strong {
+                .css(color, @collapsible-nav-current-color);
+                .css(border-color, @collapsible-nav-current-border-color);
+                .css(font-weight, @collapsible-nav-current-font-weight);
+								color: #e66c69;
+								text-decoration: none;
+            }
+            a {
+                .css(border-color, @collapsible-nav-current-border-color);
+            }
+
+        }
+    }
+}
+
+}
+
+//
+//    Desktop
+//--------------------------------------
+.responsive-min-l(@break) when (@break = @screen-m) {
+    .block-collapsible-nav {
+        .title {
+            &:extend(.abs-visually-hidden-desktop all);
+        }
+    }
+}
+
+//
+//    Mobile
+//--------------------------------------
+.responsive-max-m(@break) when (@break = @screen-m) {
+    .block-collapsible-nav {
+        position: absolute;
+        top: -21px;
+        left: 0;
+        width: 100%;
+        z-index: 5;
+        .title {
+            &:extend(.abs-toggling-title-mobile all);
+        }
+        .content {
+            border-bottom: @border-width-base solid @border-color-base;
+            display: none;
+            &.active {
+                display: block;
+            }
+        }
+    }
+}

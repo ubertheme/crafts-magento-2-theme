@@ -1,0 +1,236 @@
+// /**
+// //  * Magento
+//  *
+//  * NOTICE OF LICENSE
+//  *
+//  * This source file is subject to the Academic Free License (AFL 3.0)
+//  * that is bundled with this package in the file LICENSE_AFL.txt.
+//  * It is also available through the world-wide-web at this URL:
+//  * http://opensource.org/licenses/afl-3.0.php
+//  * If you did not receive a copy of the license and are unable to
+//  * obtain it through the world-wide-web, please send an email
+//  * to license@magentocommerce.com so we can send you a copy immediately.
+//  *
+//  * DISCLAIMER
+//  *
+//  * Do not edit or add to this file if you wish to upgrade Magento to newer
+//  * versions in the future. If you wish to customize Magento for your
+//  * needs please refer to http://www.magentocommerce.com for more information.
+//  *
+//  * @category    design
+//  * @copyright   Copyright (c) 2014 X.commerce, Inc. (http://www.magentocommerce.com)
+//  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+//  */
+
+@form-field-vertical-indent-desktop: 29px;
+
+//
+//    Common
+//--------------------------------------
+.form-element-all() {
+    input[type="text"],
+    input[type="password"],
+    input[type="url"],
+    input[type="tel"],
+    input[type="search"],
+    input[type="number"],
+    input[type="datetime"],
+    input[type="email"] {
+        .form-element-input(@_type: input-text);
+        border: 1px solid #f4f4f4;
+        color: #999;
+        font: 100% sans-serif;
+        vertical-align: middle;
+        border-radius: 3px;
+        -moz-border-radius: 3px;
+        -webkit-border-radius: 3px;
+    }
+
+    input[type="number"] {
+        .form-element-number-reset();
+    }
+
+    input[type="search"] {
+        .form-element-search-reset();
+    }
+
+    select {
+        .form-element-input(@_type: select);
+    }
+
+    select[multiple="multiple"] {
+        .css(height, auto);
+        background-image: none;
+    }
+
+    textarea {
+        .form-element-input(@_type: textarea);
+        .form-element-textarea-resize();
+    }
+
+    input[type="checkbox"] {
+        .form-element-choice(@_type: input-checkbox);
+    }
+
+    input[type="radio"] {
+        .form-element-choice(@_type: input-radio);
+    }
+
+    input,
+    select,
+    textarea {
+        .form-validation();
+    }
+
+    div.mage-error[generated] {
+        .form-validation-note();
+    }
+
+    input[type="button"],
+    input[type="reset"],
+    input[type="submit"] {
+        cursor: pointer;
+        -webkit-appearance: button;
+        *overflow: visible;
+        background: #fc615d;
+        border: 0 none;
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        color: #fff;
+        cursor: pointer;
+        font-family: "novecento_widenormal";
+        font-style: normal;
+        font-weight: bold;
+        line-height: 100%;
+        overflow: visible;
+        padding: 10px 20px;
+        text-align: center;
+        vertical-align: middle;
+        width: auto;
+        &:hover, 
+        &:focus{
+          background: #dc3e3a;
+          border: 0 none;
+          opacity: 0.8;
+        }
+    }
+
+    input::-moz-focus-inner {
+        border: 0;
+        padding: 0;
+    }
+}
+
+.responsive-common() {
+
+.fieldset {
+    .form-fieldset();
+    &:last-child {
+        margin-bottom: 0;
+    }
+    > .field,
+    > .fields > .field {
+        .form-field();
+        &.no-label {
+            > .label {
+                &:extend(.abs-visually-hidden all);
+            }
+        }
+        &.choice {
+            .label {
+                font-weight: normal;
+                display: inline;
+            }
+        }
+        .label {
+            .column:not(.main) & {
+                font-weight: normal;
+            }
+        }
+        .field.choice {
+            margin-bottom: @indent-s-base;
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+        input[type=file] {
+            margin: @indent-xs-base 0;
+        }
+    }
+}
+.legend + .fieldset,
+.legend + div {
+    clear: both;
+}
+.legend {
+    strong {
+        margin-left: @indent-xs-base;
+    }
+}
+fieldset.field {
+    border: 0;
+    padding: 0;
+}
+.field.date {
+    .control input {
+        margin-right: 10px;
+        min-width: 80px;
+        width: 25%;
+    }
+}
+
+div.mage-error[generated] {
+    margin-top: 7px;
+}
+
+.field .tooltip {
+    .tooltip(right);
+    .tooltip-content {
+        min-width: 200px;
+        white-space: normal;
+    }
+}
+
+input:focus ~ .tooltip .tooltip-content,
+select:focus ~ .tooltip .tooltip-content {
+    display: block;
+}
+
+//
+//    Sidebar forms
+//--------------------------------------
+.sidebar {
+    .fieldset {
+        margin: 0;
+        > .field:not(.choice) >,
+        .fields > .field {
+            margin: 0 0 @form-field-vertical-indent;
+            .label {
+                padding: 0 0 5px;
+                text-align: left;
+                width: 100%
+            }
+            .control {
+                width: 100%;
+            }
+        }
+    }
+}
+
+}
+
+//
+//    Desktop
+//--------------------------------------
+.responsive-min-l(@break) when (@break = @screen-m) {
+    .fieldset {
+        .legend {
+            &:extend(.abs-margin-for-forms-desktop all);
+        }
+        > .field {
+            .form-field-type-revert();
+            margin: 0 0 @form-field-vertical-indent-desktop;
+        }
+    }
+}
